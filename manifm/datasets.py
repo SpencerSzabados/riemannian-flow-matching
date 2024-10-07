@@ -411,6 +411,14 @@ def _get_dataset(cfg):
             centers=centers,
             dataset_size=10000,
         )
+    elif cfg.data == "sphere":
+        manifold = Sphere()
+        dataset = Wrapped(manifold,
+                          cfg.wrapped.dim,
+                          cfg.wrapped.n_mixtures,
+                          cfg.wrapped.scale,
+                          dataset_size=200000,
+                          )
     elif cfg.data == "eeg_1":
         dataset = EEG(cfg.eeg_datadir, set="1", Riem_geodesic=cfg.eeg.Riem_geodesic, Riem_norm=cfg.eeg.Riem_norm)
     elif cfg.data == "eeg_2a":

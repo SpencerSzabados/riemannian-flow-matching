@@ -96,7 +96,7 @@ def main(cfg: DictConfig):
             pl.loggers.WandbLogger(
                 save_dir=".",
                 name=f"{cfg.data}_{now}",
-                project="ManiFM",
+                project="riemann-flow-matching",
                 log_model=False,
                 config=cfg_dict,
                 resume=True,

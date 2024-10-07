@@ -56,7 +56,7 @@ def create_simple_bunny(replace: bool = False):
 
     np.random.seed(777)
 
-    v, f = igl.read_triangle_mesh("mesh/bunny_simp.obj")
+    v, f = igl.read_triangle_mesh("mesh/bunny_simple.obj")
     vi = v[234]
     x = np.random.randn(200000, 3) * 10.0 + vi
     x = igl.signed_distance(x, v, f)[2]
@@ -73,7 +73,7 @@ def create_eigfn(
 
     np.random.seed(777)
 
-    v, f = igl.read_triangle_mesh(f"../data/mesh/{obj}_simp.obj")
+    v, f = igl.read_triangle_mesh(f"../data/mesh/{obj}_simple.obj")
 
     v, f = torch.tensor(v), torch.tensor(f)
     mesh = Mesh(v, f, numeigs=idx + 20, upsample=upsample)
@@ -206,12 +206,12 @@ def decimate_bunny():
     v_simp = (v_simp - m2) / s2 * s1 + m1
 
     _, v_simp, f_simp, _, _ = igl.decimate(v_simp, f_simp, 5000)
-    igl.write_obj(f"mesh/{name}_simp.obj", v_simp, f_simp)
+    igl.write_obj(f"mesh/{name}_simple.obj", v_simp, f_simp)
 
 
 def decimate_mesh(name: str, replace: bool = False):
-    if not replace and os.path.exists(f"mesh/{name}_simp.obj"):
-        print(f"mesh/{name}_simp.obj exists. Skipping.")
+    if not replace and os.path.exists(f"mesh/{name}_simple.obj"):
+        print(f"mesh/{name}_simple.obj exists. Skipping.")
         return
 
     if name == "bunny":
@@ -220,7 +220,7 @@ def decimate_mesh(name: str, replace: bool = False):
 
     v, f = igl.read_triangle_mesh(f"mesh/{name}.obj")
     _, v_simp, f_simp, _, _ = igl.decimate(v, f, 5000)
-    igl.write_obj(f"mesh/{name}_simp.obj", v_simp, f_simp)
+    igl.write_obj(f"mesh/{name}_simple.obj", v_simp, f_simp)
 
 
 def pad2d(x):

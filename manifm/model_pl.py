@@ -230,9 +230,10 @@ class ManifoldFMLitModule(pl.LightningModule):
         os.makedirs("figs", exist_ok=True)
 
         # Plot world map
-        world = geopandas.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
-        ax = world.plot(figsize=(9, 4), antialiased=False, color="grey")
+        # world = geopandas.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
+        # ax = world.plot(figsize=(9, 4), antialiased=False, color="grey")
 
+        world, ax = plt.subplots(figsize=(9, 4))
         # Plot model samples
         # samples = self.sample(batch.shape[0], batch.device)
         # samples = samples.cpu()
@@ -277,13 +278,13 @@ class ManifoldFMLitModule(pl.LightningModule):
         pts = geopandas.GeoDataFrame(geometry=geometry)
         pts.plot(ax=ax, color="#d73027", markersize=0.01, alpha=0.7)
 
-        cbar = plt.colorbar(cs, ax=ax, pad=0.01, ticks=[0, 1])
-        cbar.ax.set_yticklabels(["0", "$\geq$1"])
-        cbar.ax.set_ylabel("likelihood", fontsize=18, rotation=270, labelpad=10)
-        ax.tick_params(axis="both", which="both", direction="in", length=3)
-        cbar.ax.tick_params(axis="both", which="both", direction="in", length=3)
-        cbar.set_alpha(0.7)
-        cbar.draw_all()
+        # cbar = plt.colorbar(cs, ax=ax, pad=0.01, ticks=[0, 1])
+        # cbar.ax.set_yticklabels(["0", "$\geq$1"])
+        # cbar.ax.set_ylabel("likelihood", fontsize=18, rotation=270, labelpad=10)
+        # ax.tick_params(axis="both", which="both", direction="in", length=3)
+        # cbar.ax.tick_params(axis="both", which="both", direction="in", length=3)
+        # cbar.set_alpha(0.7)
+        # cbar._draw_all()
 
         # plt.axis("off")
         plt.xlim([-180, 180])
