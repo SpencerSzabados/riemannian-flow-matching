@@ -64,7 +64,7 @@ class ManifoldFMLitModule(pl.LightningModule):
         self.model = EMA(
             Unbatch(  # Ensures vmap works.
                 ProjectToTangent(  # Ensures we can just use Euclidean divergence.
-                    tMLP(  # Vector field in the ambient space.
+                    tMLP(          # Vector field in the ambient space.
                         self.dim,
                         d_model=cfg.model.d_model,
                         num_layers=cfg.model.num_layers,

@@ -1,4 +1,4 @@
-name: manifm
+name: rfm
 channels:
   - pytorch
   - conda-forge
@@ -24,7 +24,7 @@ dependencies:
     - ipykernel
     - torchdiffeq
     - scikit-learn
-    - pytorch-lightning==1.8.5.post0
+    - pytorch-lightning==1.8.5
     - torchdiffeq
     - hydra-core==1.2.0
     - hydra-submitit-launcher==1.2.0

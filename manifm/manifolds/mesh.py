@@ -179,6 +179,7 @@ class Mesh(Manifold):
 
         nfe = [0]
 
+        # Define the conditional vector field flow and solve for x_t given t.
         def odefunc(t, x):
             del t
             nfe[0] += 1
@@ -186,13 +187,7 @@ class Mesh(Manifold):
             d, vjp_fn = vjp(lambda x: self.dist(x, x1, squared=squared), x)
             dgradx = vjp_fn(torch.ones_like(d))[0]
 
-            dx = (
-                -orig_dist[..., None]
-                * dgradx
-                / torch.linalg.norm(dgradx, dim=-1, keepdim=True)
-                .pow(2)
-                .clamp(min=1e-20)
-            )
+            dx = (-orig_dist[..., None]*dgradx/torch.linalg.norm(dgradx, dim=-1, keepdim=True).pow(2).clamp(min=1e-20))
             return dx
 
         if method not in ["euler", "midpoint", "rk4"]:
